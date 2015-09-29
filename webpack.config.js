@@ -1,71 +1,63 @@
-var 
-  path = require('path'),
-  merge = require('webpack-merge'),
-  webpack = require('webpack'),
-  TARGET = process.env.TARGET,
-  ROOT_PATH = path.resolve(__dirname),
-  HtmlWebpackPlugin = require('html-webpack-plugin');
+var Webpack = require('webpack');
+var path = require('path');
+var nodeModulesPath = path.resolve(__dirname, 'node_modules');
+var buildPath = path.resolve(__dirname, 'public', 'build');
+var mainPath = path.resolve(__dirname, 'app', 'main.jsx');
 
-var common = {
+var config = {
 
-  entry: [path.resolve(ROOT_PATH, 'app/main')],
+  // Makes sure errors in console map to the correct file
+  // and line number
+  devtool: 'eval',
+  entry: [
 
-  resolve: {
-    extensions: ['', '.js', '.jsx']
-  },
+    // For hot style updates
+    'webpack/hot/dev-server',
 
+    // The script refreshing the browser on none hot updates
+    'webpack-dev-server/client?http://localhost:8080',
+
+    // Our application
+    mainPath],
   output: {
-    path: path.resolve(ROOT_PATH, 'build'),
-    filename: 'bundle.js'
+
+    // We need to give Webpack a path. It does not actually need it,
+    // because files are kept in memory in webpack-dev-server, but an
+    // error will occur if nothing is specified. We use the buildPath
+    // as that points to where the files will eventually be bundled
+    // in production
+    path: buildPath,
+    filename: 'bundle.js',
+
+    // Everything related to Webpack should go through a build path,
+    // localhost:3000/build. That makes proxying easier to handle
+    publicPath: '/build/'
+  },
+  module: {
+
+    loaders: [
+
+    // I highly recommend using the babel-loader as it gives you
+    // ES6/7 syntax and JSX transpiling out of the box
+    {
+      test: /\.js$/,
+      loader: 'babel',
+      exclude: [nodeModulesPath]
+    },
+
+    // Let us also add the style-loader and css-loader, which you can
+    // expand with less-loader etc.
+    {
+      test: /\.css$/,
+      loader: 'style!css'
+    }
+
+    ]
   },
 
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'React starter kit'
-    })
-  ],
-
-  module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        loaders: ['react-hot', 'babel?stage=1'],
-        include: path.resolve(ROOT_PATH, 'app')
-      },
-
-      {
-        test: /\.css$/,
-        loaders: ['style', 'css']
-      }
-    ]
-  }
+  // We have to manually add the Hot Replacement plugin when running
+  // from Node
+  plugins: [new Webpack.HotModuleReplacementPlugin()]
 };
 
-switch (TARGET) {
-  case 'build':
-    module.exports = merge(common, {
-      plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-          compress: {
-            warnings: false
-          }
-        }),
-        new webpack.DefinePlugin({
-          'process.env': {
-            'NODE_ENV': JSON.stringify('production')
-          }
-        })
-      ]
-    });
-
-    break;
-
-  case 'dev':
-    module.exports = merge(common, {
-      entry: [
-        'webpack-dev-server/client?http://localhost:8080',
-        'webpack/hot/dev-server'
-      ]
-    });
-    break;
-}
+module.exports = config;

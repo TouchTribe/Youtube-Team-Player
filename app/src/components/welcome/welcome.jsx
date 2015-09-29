@@ -8,7 +8,7 @@ class Welcome extends React.Component {
 
   render() {
     return (
-      <h2>Hi from inside of a component!</h2>
+      <h2>Hi from inside of a component!!</h2>
     );
   }
 }
