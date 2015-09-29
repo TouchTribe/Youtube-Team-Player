@@ -1,4 +1,4 @@
-var 
+var
   path = require('path'),
   merge = require('webpack-merge'),
   webpack = require('webpack'),
@@ -21,7 +21,7 @@ var common = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'React starter kit'
+      title: 'Spotify Team Player'
     })
   ],
 

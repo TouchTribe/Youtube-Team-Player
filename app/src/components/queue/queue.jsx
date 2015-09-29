@@ -38,9 +38,7 @@ class Queue extends React.Component {
                         <div className='track__title'>{ track.name }</div>
                         <div className='track__artist'>{ track.artist }</div>
                     </div>);
-                })
-
-        console.log( queue )
+                });
         return (
             <div className='track-list'>
                 { tracks }
