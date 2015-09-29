@@ -1,0 +1,16 @@
+import React from 'react';
+
+class {{ properCase name }} extends React.Component {
+
+  constructor() {
+    super();
+  }
+
+  render() {
+    return (
+      <h2>Newly generated {{ properCase name }} component</h2>
+    );
+  }
+}
+
+export default {{ properCase name }};

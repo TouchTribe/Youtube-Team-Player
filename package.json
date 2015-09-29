@@ -1,7 +1,7 @@
 {
-  "name": "react-starter-kit",
+  "name": "spotify-team-player",
   "version": "1.0.0",
-  "description": "This is a short performance demo I am making to benchmark how React is performing against in the Devtools profiles.",
+  "description": "A Spotify team player",
   "main": "webpack.config.js",
   "dependencies": {
     "react": "^0.13.3"
