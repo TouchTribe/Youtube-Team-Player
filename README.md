@@ -5,7 +5,7 @@ The aim is to keep a clean, simple, highly modifiable and non-biased way of sett
 clone the repo and then and in your console type the following
 
 ```
-$ npm i 
+$ npm i
 $ npm start
 ```
 
@@ -14,3 +14,19 @@ Head to localhost:8080 in your browser if it did not start automagically.
 Brough to you with love by [Oz](https://github.com/Ositoozy/webpack-react-starter)
 Feel free to submit pull requests to make it a better development friendly env.
 
+## Generating Components
+
+To get a new component use `plop`.
+Make sure it's installed on your system
+
+```bash
+[sudo] npm i plop -g
+```
+
+Then you can use it like this:
+
+```bash
+plop component
+# or to get a list
+plop
+```
