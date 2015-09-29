@@ -7,6 +7,7 @@ clone the repo and then and in your console type the following
 
 ```
 $ npm i 
+$ npm run build
 $ npm start
 ```
 
