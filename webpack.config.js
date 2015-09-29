@@ -63,7 +63,7 @@ switch (TARGET) {
   case 'dev':
     module.exports = merge(common, {
       entry: [
-        'webpack-dev-server/client?http://localhost:8080',
+        'webpack-dev-server/client?http://localhost:80',
         'webpack/hot/dev-server'
       ]
     });
