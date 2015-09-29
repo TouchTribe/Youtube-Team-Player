@@ -1,6 +1,6 @@
 import React from 'react';
 import Welcome from './components/welcome/welcome';
-import Welcome from './components/search/search';
+import Search from './components/search/search';
 
 class App extends React.Component {
 
@@ -10,8 +10,10 @@ class App extends React.Component {
 
   render() {
     return(
-      <Welcome/>
-      <Search/>
+        <div>
+            <Welcome/>
+            <Search />
+        </div>
     )
   }
 }
