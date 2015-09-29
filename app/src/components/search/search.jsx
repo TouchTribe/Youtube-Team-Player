@@ -20,7 +20,7 @@ class Search extends React.Component {
       return (
           <div className='search'>
             <div className='search__wrapper'>
-                <input type='search' className='search__field' onChange={this.handleChange} />
+                <input type='search' className='search__field' onInput={this.input} onChange={this.handleChange} />
                 <button className='search__submit'>Search</button>
             </div>
         </div>
