@@ -11,6 +11,7 @@
     "babel-loader": "^5.3.1",
     "css-loader": "^0.15.2",
     "html-webpack-plugin": "^1.6.0",
+    "http-server": "^0.8.5",
     "node-libs-browser": "^0.5.2",
     "react-hot-loader": "^1.3.0",
     "style-loader": "^0.12.3",
@@ -20,8 +21,7 @@
   },
   "private": true,
   "scripts": {
-    "build": "TARGET=build webpack",
-    "start": "TARGET=dev webpack-dev-server --devtool eval-source --progress --colors --hot --inline --history-api-fallback"
+    "start": "TARGET=build webpack && TARGET=dev webpack-dev-server --devtool eval-source --progress --colors --hot --inline --history-api-fallback"
   },
   "repository": {
     "type": "git",
