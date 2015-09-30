@@ -1,6 +1,6 @@
 import React from 'react';
 
-class {{ properCase name }} extends React.Component {
+class Player extends React.Component {
 
   constructor(props) {
     super(props);
@@ -10,9 +10,9 @@ class {{ properCase name }} extends React.Component {
 
   render() {
     return (
-      <h2>Newly generated {{ properCase name }} component</h2>
+        <div className='player'>player here</div>
     );
   }
 }
 
-export default {{ properCase name }};
+export default Player;
