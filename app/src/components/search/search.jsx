@@ -9,6 +9,8 @@ class Search extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSearch = this.handleSearch.bind(this); 
         this.state = {
             value: null,
             history: null,
@@ -43,7 +45,7 @@ class Search extends React.Component {
     }
 
     render() {
-        const self = this;
+
         return (
               <div className='search'>
                 <div className='search__wrapper'>
@@ -51,8 +53,8 @@ class Search extends React.Component {
                            className='search__field'
                            placeholder='Search'
                            onFocus={this.handleFocus}
-                           onChange={this.handleChange.bind( self )} />
-                    <button className='search__submit' onClick={ this.handleSearch.bind( self ) }>Search</button>
+                           onChange={this.handleChange} />
+                    <button className='search__submit' onClick={ this.handleSearch }>Search</button>
                 </div>
                 <SearchResults results={ this.state.search_results } />
               </div>
