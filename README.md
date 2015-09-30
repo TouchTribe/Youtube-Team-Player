@@ -11,9 +11,6 @@ $ npm start
 
 Head to localhost:8080 in your browser if it did not start automagically.
 
-Brough to you with love by [Oz](https://github.com/Ositoozy/webpack-react-starter)
-Feel free to submit pull requests to make it a better development friendly env.
-
 ## Generating Components
 
 To get a new component use `plop`.
@@ -32,5 +29,4 @@ plop
 ```
 
 ## Spotify
-
 For connecting and interacting we are using the `spotify-sdk`. [Check here for documentation](https://www.npmjs.com/package/spotify-sdk).
