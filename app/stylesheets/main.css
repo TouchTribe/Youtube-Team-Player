@@ -16,8 +16,8 @@ body, html {
 
 .search {
     position: fixed;
-    top: 0; right: 400px; left: 0;
-    height: 50px;
+    top: 0; right: 400px; left: 0; bottom: 0;
+    padding-top: 50px;
 }
 
 .search__wrapper {
@@ -85,16 +85,16 @@ input[type="search"]::-webkit-search-results-decoration {
     overflow-y: scroll;
 }
 
-.track {
+.track, .result {
     padding: 10px;
     border-bottom: 1px solid #282828;
 }
 
-.track__title {
+.track__title, .result__title {
 
 }
 
-.track__artist {
+.track__artist, .result__artist {
     font-size: 0.8em;
     font-style: italic;
 }

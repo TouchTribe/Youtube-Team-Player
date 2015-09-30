@@ -20,7 +20,7 @@ class History extends React.Component {
   }
 
   render() {
-      if( this.props.query !== '' && this.props.query !== undefined ){
+      if( this.props.query !== '' && this.props.query !== null ){
           return (
               <div className='history'>Hello history</div>
           );
