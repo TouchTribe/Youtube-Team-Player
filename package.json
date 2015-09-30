@@ -4,6 +4,7 @@
   "description": "A Spotify team player",
   "main": "webpack.config.js",
   "dependencies": {
+    "lodash": "^3.10.1",
     "react": "^0.13.3",
     "spotify-sdk": "0.0.22"
   },

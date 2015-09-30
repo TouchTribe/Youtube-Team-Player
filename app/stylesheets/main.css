@@ -83,6 +83,7 @@ input[type="search"]::-webkit-search-results-decoration {
     position: absolute;
     top: 400px; right: 0; bottom: 0; left: 0;
     overflow-y: scroll;
+    border-left: 1px solid #282828;
 }
 
 .track, .result {
