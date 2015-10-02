@@ -10,12 +10,15 @@ class SearchResults extends React.Component {
 
     render() {
         let results = this.props.results.map(result => {
-            return (
-                <div className='result'>
-                    <div className='result__title'>{ result.name }</div>
-                    <div className='result__artist'>{ result.artist }</div>
-                </div>
-            )
+            if( result._artists ){
+                let artist_name = result._artists.map(a => a.name);
+                return (
+                    <div className='result'>
+                        <div className='result__title'>{ result.name }</div>
+                        <div className='result__artist'>{ artist_name.join(', ') }</div>
+                    </div>
+                )
+            }
         });
         return (
             <div className='search-results'>

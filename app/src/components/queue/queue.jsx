@@ -6,33 +6,12 @@ class Queue extends React.Component {
         super(props);
         this.props = props;
         this.state = {
-            queue: []
+            queue: this.props.queue
         };
     }
 
-    getQueue(){
-        this.state.queue = [
-            { name:'Some awesome track', artist: 'Some guy' },
-            { name:'Some awesome track', artist: 'Some other guy' },
-            { name:'Some awesome track', artist: 'Some other other guy' },
-            { name:'Some awesome track', artist: 'Some other other other guy' },
-            { name:'Some awesome track', artist: 'Some another other guy' },
-            { name:'Some awesome track', artist: 'Other some guy' },
-            { name:'Some awesome track', artist: 'Some guy' },
-            { name:'Some awesome track', artist: 'Some guy' },
-            { name:'Some awesome track', artist: 'Other some guy' },
-            { name:'Some awesome track', artist: 'Some guy' },
-            { name:'Some awesome track', artist: 'Some guy' },
-            { name:'Some awesome track', artist: 'Some other other other guy' },
-            { name:'Some awesome track', artist: 'Some guy' },
-            { name:'Some awesome track', artist: 'Some other other other guy' },
-            { name:'Some awesome track', artist: 'Some guy' }
-        ];
-        return this.state.queue;
-    }
-
     render() {
-        let queue = this.getQueue();
+        let queue = this.state.queue;
         let tracks = queue.map((track) => {
                     return (<div className='track'>
                         <div className='track__title'>{ track.name }</div>

@@ -13,8 +13,8 @@ class PlayerWindow extends React.Component {
   render() {
     return (
       <div className='player-window'>
-        <Player />
-        <Queue />
+        <Player track='2UzMpPKPhbcC8RbsmuURAZ' />
+        <Queue queue={ this.props.queue } />
       </div>
     );
   }

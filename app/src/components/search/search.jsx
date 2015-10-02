@@ -10,7 +10,8 @@ class Search extends React.Component {
         super(props);
         this.props = props;
         this.handleChange = this.handleChange.bind(this);
-        this.handleSearch = this.handleSearch.bind(this); 
+        this.handleSearch = this.handleSearch.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
         this.state = {
             value: null,
             history: null,
@@ -23,14 +24,16 @@ class Search extends React.Component {
         this.setState({value: event.target.value });
     }
 
-    handleSearch(event) {
+    handleKeyPress(event) {
+        if(event.keyCode === 13) this.handleSearch()
+    }
+
+    handleSearch() {
         let query = this.state.value;
         const self = this;
-        console.log('-->>>', query);
         this.track.search(query, {limit: 10}).then((trackCollection) => {
             let collection = [];
             for (let key in trackCollection) {
-                console.log( key, _.includes(key, '_' ) )
                 if( !_.includes(key, '_' ) ){
                     let track = trackCollection[ key ];
                     collection.push( track );
@@ -38,10 +41,6 @@ class Search extends React.Component {
             }
             self.setState({search_results: collection });
         });
-    }
-
-    handleFocus(event) {
-        console.log( event );
     }
 
     render() {
@@ -52,8 +51,8 @@ class Search extends React.Component {
                     <input type='search'
                            className='search__field'
                            placeholder='Search'
-                           onFocus={this.handleFocus}
-                           onChange={this.handleChange} />
+                           onChange={this.handleChange}
+                           onKeyDown={this.handleKeyPress} />
                     <button className='search__submit' onClick={ this.handleSearch }>Search</button>
                 </div>
                 <SearchResults results={ this.state.search_results } />
