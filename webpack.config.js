@@ -21,7 +21,7 @@ var common = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Spotify Team Player'
+      title: 'Youtube Team Player'
     })
   ],
 

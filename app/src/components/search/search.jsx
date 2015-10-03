@@ -1,8 +1,9 @@
 import React from 'react';
 import History from '../history/history';
 import SearchResults from '../search-results/search-results';
-import { Client, TrackHandler } from 'spotify-sdk';
 import * as _ from 'lodash';
+
+const searchUrl = 'https://www.googleapis.com/youtube/v3/search?key=AIzaSyDz2eejQS8PdCjeF0sNPWJQLnsCg-Zm-ZA&part=snippet&maxResults=50&type=video&q=';
 
 class Search extends React.Component {
 
@@ -17,7 +18,6 @@ class Search extends React.Component {
             history: null,
             search_results: []
         };
-        this.track = new TrackHandler();
     }
 
     handleChange(event) {
@@ -31,15 +31,10 @@ class Search extends React.Component {
     handleSearch() {
         let query = this.state.value;
         const self = this;
-        this.track.search(query, {limit: 10}).then((trackCollection) => {
-            let collection = [];
-            for (let key in trackCollection) {
-                if( !_.includes(key, '_' ) ){
-                    let track = trackCollection[ key ];
-                    collection.push( track );
-                }
-            }
-            self.setState({search_results: collection });
+        fetch(searchUrl + query).then(res => res.json())
+        .then((body) => {
+            self.setState({search_results: body.items });
+            console.log(body);
         });
     }
 
@@ -55,7 +50,7 @@ class Search extends React.Component {
                            onKeyDown={this.handleKeyPress} />
                     <button className='search__submit' onClick={ this.handleSearch }>Search</button>
                 </div>
-                <SearchResults results={ this.state.search_results } />
+                <SearchResults results={ this.state.search_results } onSelect={ this.props.onSelect } />
               </div>
     );
   }

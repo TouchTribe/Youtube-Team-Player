@@ -1,4 +1,5 @@
 import React from 'react';
+import ListItem from '../list-item/list-item';
 
 class Queue extends React.Component {
 
@@ -12,15 +13,15 @@ class Queue extends React.Component {
 
     render() {
         let queue = this.state.queue;
-        let tracks = queue.map((track) => {
-                    return (<div className='track'>
-                        <div className='track__title'>{ track.name }</div>
-                        <div className='track__artist'>{ track.artist }</div>
-                    </div>);
-                });
+        let items = queue.map((track) => {
+            return(<ListItem
+                id={ track.id.videoId }
+                title={ track.snippet.title }
+                track={track}/>)
+            });
         return (
             <div className='track-list'>
-                { tracks }
+                { items }
             </div>
         );
     }

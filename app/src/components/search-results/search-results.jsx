@@ -1,4 +1,5 @@
 import React from 'react';
+import ListItem from './search-result-item';
 
 class SearchResults extends React.Component {
 
@@ -10,15 +11,14 @@ class SearchResults extends React.Component {
 
     render() {
         let results = this.props.results.map(result => {
-            if( result._artists ){
-                let artist_name = result._artists.map(a => a.name);
-                return (
-                    <div className='result'>
-                        <div className='result__title'>{ result.name }</div>
-                        <div className='result__artist'>{ artist_name.join(', ') }</div>
-                    </div>
-                )
-            }
+            let snippet = result.snippet;
+            return (
+                <ListItem
+                    id={ result.id.videoId }
+                    title={ snippet.title }
+                    track={result}
+                    onSelect={ this.props.onSelect }/>
+            )
         });
         return (
             <div className='search-results'>
