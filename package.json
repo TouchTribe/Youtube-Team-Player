@@ -1,11 +1,12 @@
 {
-  "name": "spotify-team-player",
+  "name": "youtube-team-player",
   "version": "1.0.0",
-  "description": "A Spotify team player",
+  "description": "A Youtube team player",
   "main": "webpack.config.js",
   "dependencies": {
     "lodash": "^3.10.1",
     "react": "^0.13.3",
+    "react-youtube": "^4.1.2",
     "spotify-sdk": "0.0.22"
   },
   "devDependencies": {

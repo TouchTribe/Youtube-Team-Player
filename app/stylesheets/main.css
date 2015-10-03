@@ -49,7 +49,7 @@ input[type="search"]::-webkit-search-results-decoration {
     position: absolute;
     top: 0px; right: 0px; bottom: 0px;
     width: 50px;
-    background-color: #1ED760;
+    background-color: #E62117;
     border: none;
     color: transparent;
 }
@@ -59,6 +59,11 @@ input[type="search"]::-webkit-search-results-decoration {
     display: block;
     color: #fff;
     content: "\e023";
+}
+
+.search-results {
+    height: 100%;
+    overflow-y: scroll;
 }
 
 /* player-window.css */
@@ -73,10 +78,16 @@ input[type="search"]::-webkit-search-results-decoration {
     position: absolute;
     top: 0; right: 0; left: 0;
     height: 400px;
-    background-color: #000;
-    background-image: url('http://lorempixel.com/400/400/cats/');
-    background-size: cover;
-    opacity: 0.6;
+    background-color: #14171A;
+    opacity: 0.8;
+    display: flex;
+    border-left: 1px solid #282828;
+    border-bottom: 1px solid #282828;
+}
+
+.player h2 {
+    padding: 0 20px;
+    align-self: center;
 }
 
 .track-list {
@@ -86,16 +97,20 @@ input[type="search"]::-webkit-search-results-decoration {
     border-left: 1px solid #282828;
 }
 
-.track, .result {
+.list-item, .list-item__search {
     padding: 10px;
     border-bottom: 1px solid #282828;
+    white-space: nowrap;
+    -moz-user-select: none;
+    cursor: normal;
 }
 
-.track__title, .result__title {
+.list-item__search,
+.list-item__search .item__title { cursor: pointer; }
 
-}
 
-.track__artist, .result__artist {
-    font-size: 0.8em;
-    font-style: italic;
+.item__title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    cursor: default;
 }

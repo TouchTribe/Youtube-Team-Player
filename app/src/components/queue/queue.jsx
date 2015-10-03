@@ -1,4 +1,5 @@
 import React from 'react';
+import ListItem from '../list-item/list-item';
 
 class Queue extends React.Component {
 
@@ -6,42 +7,21 @@ class Queue extends React.Component {
         super(props);
         this.props = props;
         this.state = {
-            queue: []
+            queue: this.props.queue
         };
     }
 
-    getQueue(){
-        this.state.queue = [
-            { name:'Some awesome track', artist: 'Some guy' },
-            { name:'Some awesome track', artist: 'Some other guy' },
-            { name:'Some awesome track', artist: 'Some other other guy' },
-            { name:'Some awesome track', artist: 'Some other other other guy' },
-            { name:'Some awesome track', artist: 'Some another other guy' },
-            { name:'Some awesome track', artist: 'Other some guy' },
-            { name:'Some awesome track', artist: 'Some guy' },
-            { name:'Some awesome track', artist: 'Some guy' },
-            { name:'Some awesome track', artist: 'Other some guy' },
-            { name:'Some awesome track', artist: 'Some guy' },
-            { name:'Some awesome track', artist: 'Some guy' },
-            { name:'Some awesome track', artist: 'Some other other other guy' },
-            { name:'Some awesome track', artist: 'Some guy' },
-            { name:'Some awesome track', artist: 'Some other other other guy' },
-            { name:'Some awesome track', artist: 'Some guy' }
-        ];
-        return this.state.queue;
-    }
-
     render() {
-        let queue = this.getQueue();
-        let tracks = queue.map((track) => {
-                    return (<div className='track'>
-                        <div className='track__title'>{ track.name }</div>
-                        <div className='track__artist'>{ track.artist }</div>
-                    </div>);
-                });
+        let queue = this.state.queue;
+        let items = queue.map((track) => {
+            return(<ListItem
+                id={ track.id.videoId }
+                title={ track.snippet.title }
+                track={track}/>)
+            });
         return (
             <div className='track-list'>
-                { tracks }
+                { items }
             </div>
         );
     }
