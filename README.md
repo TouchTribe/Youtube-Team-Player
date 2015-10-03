@@ -30,7 +30,3 @@ plop component
 # or to get a list
 plop
 ```
-
-## Spotify
-
-For connecting and interacting we are using the `spotify-sdk`. [Check here for documentation](https://www.npmjs.com/package/spotify-sdk).
