@@ -114,3 +114,59 @@ input[type="search"]::-webkit-search-results-decoration {
     overflow: hidden;
     cursor: default;
 }
+
+
+@font-face {
+	font-family: 'spotify-team-player';
+	src: url('../fonts/spotify-team-player.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="tt-"], [class*=" tt-"] {
+	font-family: 'spotify-team-player';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.tt-bell:before {
+	content: "\e006";
+}
+.tt-cog:before {
+	content: "\e023";
+}
+.tt-search:before {
+	content: "\e036";
+}
+.tt-plus:before {
+	content: "\e040";
+}
+.tt-minus:before {
+	content: "\e041";
+}
+.tt-skip-back:before {
+	content: "\e050";
+}
+.tt-play:before {
+	content: "\e052";
+}
+.tt-pause:before {
+	content: "\e053";
+}
+.tt-stop:before {
+	content: "\e054";
+}
+.tt-next:before {
+	content: "\e056";
+}
+.tt-dots:before {
+	content: "\e129";
+}
