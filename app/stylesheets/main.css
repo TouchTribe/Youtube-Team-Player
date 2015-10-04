@@ -50,15 +50,23 @@ input[type="search"]::-webkit-search-results-decoration {
     top: 0px; right: 0px; bottom: 0px;
     width: 50px;
     background-color: #E62117;
-    border: none;
+    border: 1px solid transparent;
     color: transparent;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.search__submit:active {
+    border: 1px solid transparent;
 }
 
 .search__submit:before {
     font-family: 'spotify-team-player';
     display: block;
     color: #fff;
-    content: "\e023";
+    content: "\e036";
+    font-size: 25px;
+    padding: 8px 0 0 0;
 }
 
 .search-results {
@@ -105,14 +113,52 @@ input[type="search"]::-webkit-search-results-decoration {
     cursor: normal;
 }
 
+.list-item__search {
+    padding: 15px 50px 15px 60px;
+    position: relative;
+}
+
+.list-item__search:after {
+    font-family: 'spotify-team-player';
+    content: "\e040";
+    display: block;
+    color: #ADAFB2;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+}
+
 .list-item__search,
 .list-item__search .item__title { cursor: pointer; }
 
+.item__artwork {
+    width: 70px;
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    background-size: cover;
+    z-index: 5;
+}
+
+.item__artwork:after {
+    content: " ";
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: -moz-linear-gradient(45deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,1) 100%);
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(0,0,0,0.3)), color-stop(100%,rgba(0,0,0,1)));
+    background: -webkit-linear-gradient(45deg, rgba(0,0,0,0.3) 0%,rgba(0,0,0,1) 100%);
+    background: -o-linear-gradient(45deg, rgba(0,0,0,0.3) 0%,rgba(0,0,0,1) 100%);
+    background: -ms-linear-gradient(45deg, rgba(0,0,0,0.3) 0%,rgba(0,0,0,1) 100%);
+    background: linear-gradient(45deg, rgba(0,0,0,0.3) 0%,rgba(0,0,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=1 );
+}
 
 .item__title {
     text-overflow: ellipsis;
     overflow: hidden;
     cursor: default;
+    z-index: 10;
+    position: relative;
 }
 
 

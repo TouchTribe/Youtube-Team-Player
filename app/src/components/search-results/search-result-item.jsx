@@ -16,6 +16,7 @@ class SearchResultItem extends React.Component {
     render() {
         return (
             <div className='list-item__search' onClick={ this.handleClick } >
+                <div className='item__artwork' style={{'background-image': `url(${this.props.track.snippet.thumbnails.default.url})`}}></div>
                 <div className='item__title'>{ this.props.title }</div>
             </div>
         )
