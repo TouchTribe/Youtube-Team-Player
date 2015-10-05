@@ -2,6 +2,8 @@ import React from 'react';
 import Search from './components/search/search';
 import PlayerWindow from './components/player-window/player-window';
 
+window.WebSocket = window.WebSocket || window.MozWebSocket;
+
 class App extends React.Component {
 
   constructor(props) {
@@ -15,6 +17,12 @@ class App extends React.Component {
     this.addToQueue = this.addToQueue.bind(this);
     this.handlePlayAndPause = this.handlePlayAndPause.bind(this);
     this.onTrackEnd = this.onTrackEnd.bind(this);
+    this.wsConnection = new WebSocket('ws://127.0.0.1:3000');
+    this.wsConnection.onmessage = this.handleIncommingMessage;
+  }
+
+  handleIncommingMessage(msg){
+      console.log('Message received:', msg );
   }
 
   addToQueue(track){
