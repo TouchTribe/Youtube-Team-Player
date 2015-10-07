@@ -5,8 +5,11 @@ The aim is to keep a clean, simple, highly modifiable and non-biased way of sett
 clone the repo and then and in your console type the following
 
 ```
+$ brew install rethinkdb
 $ npm i
 $ npm start
+$ rethinkdb --http-port 8000
+$ npm run serve
 ```
 
 Head to localhost:8080 in your browser if it did not start automagically.

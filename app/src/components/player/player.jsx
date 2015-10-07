@@ -18,7 +18,6 @@ class Player extends React.Component {
         }
     };
   }
-
   render() {
       if( this.props.currentTrack ){
           let sourceId = this.props.currentTrack.id.videoId;
