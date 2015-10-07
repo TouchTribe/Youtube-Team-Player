@@ -11,7 +11,7 @@ var isProduction = process.env.NODE_ENV === 'production',
 	publicPath = path.resolve(__dirname, 'build');
 
 
-r.connect( {host: 'localhost', port: 28015, 'db': 'teamPlayer'}, function(err, conn) {
+r.connect( {host: 'localhost', port: 28015, 'db': 'youtubePlayer'}, function(err, conn) {
     if (err) throw err;
     connection = conn;
 });
@@ -35,21 +35,24 @@ app.ws('/', function(ws, req) {
 
 	}
   });
-  console.log('socket', req.testing);
 });
 
 wss = expressWs.getWss('/');
 
-app.get('/state/:session_id', function(req, res){
-	var session_id = req.params.session_id
+app.get('/state/:sessionId', function(req, res){
+	var sessionId = req.params.sessionId;
+	console.log('/state/',sessionId);
 	r.table('sessions').filter({
-		session_id: session_id
+		sessionId: sessionId
 	}).run(connection, function(err, cursor){
 		if( err ){
 			res.send(err);
 		}else {
-			var result = cursor.toArray()._settledValue[0];
-		 	res.send( result );
+			cursor.toArray(function(err, result){
+				result.forEach(function(row){
+					res.send(row);
+				})
+			});
 		}
 	});
 });
@@ -57,7 +60,7 @@ app.get('/state/:session_id', function(req, res){
 app.get('/id', function(req, res){
 	var id = generateSessionId();
 	r.table('sessions').insert({
-		session_id: id
+		sessionId: id
 	}).run(connection, function(err, result){
 		if( err ){
 			res.send(err);
@@ -67,17 +70,19 @@ app.get('/id', function(req, res){
 	});
 });
 
-var broadCastMessage = function(msg){
+var broadCastMessage = function(msg, sessionId){
 	wss.clients.forEach(function(client) {
-		client.send(msg);
+		if (!sessionId || client.sessionId == sessionId)
+			client.send(msg);
 	});
 };
 
 var setState = function(booty){
 	var state = JSON.parse(booty.state);
-	console.log('Setting state', state, 'sessionId', state.sessionId );
-	r.table('sessions').filter({'session_id': state.sessionId}).update(state).run(connection, function(err, result){
+	console.log('setState:', state);
+	r.table('sessions').filter({sessionId: state.sessionId}).update(state).run(connection, function(err, result){
 		if( !err ){
+			console.log('setState:',result);
 			broadCastMessage(JSON.stringify(booty));
 		}
 	});

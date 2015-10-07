@@ -20,7 +20,7 @@ class App extends React.Component {
     this.handlePlayAndPause = this.handlePlayAndPause.bind(this);
     this.onTrackEnd = this.onTrackEnd.bind(this);
     this.wsConnection = new WebSocket(`ws://${ serverAdress }`);
-    this.wsConnection.onmessage = this.handleIncommingMessage.bind(this);
+    this.wsConnection.onmessage = this.handleIncomingMessage.bind(this);
     this.getSessionIdOrInitState();
   }
 
@@ -37,7 +37,6 @@ class App extends React.Component {
 
   getSessionState(sessionId){
       const self = this;
-      console.log('fetching state from:', `http://${ serverAdress }/state/${ sessionId }`)
       fetch(`http://${ serverAdress }/state/${ sessionId }`)
       .then(response => response.json())
       .then(booty => {
@@ -48,21 +47,23 @@ class App extends React.Component {
 
   createNewSession(){
       const self = this;
+      console.log('createNewSession');
       fetch(`http://${ serverAdress }/id`)
       .then(response => response.json())
       .then(booty => {
           self.setState({
               sessionId: booty.session_id
           });
+              this.notifyServer();
+          window.location.hash = booty.session_id;
       });
   }
 
-  handleIncommingMessage(msg){
+  handleIncomingMessage(msg){
       let message = JSON.parse(msg.data);
       switch (message.type) {
           case 'state':
               let state = JSON.parse(message.state)
-              console.log('In comming state --->>', state)
               if(!_.isEqual(state.queue, this.state.queue)){
                   console.log('NOT THE SAME!!', [state.queue, this.state.queue]);
                   this.setState(state);
@@ -75,10 +76,11 @@ class App extends React.Component {
   }
 
   evaluateMessageState(state){
-      console.log('state -->', state);
+      console.log('evaluateMessageState:', state);
   };
 
   addToQueue(track){
+      console.log('addToQueue',track);
       let cue = this.state.queue;
       cue.push(track);
       this.setState({
@@ -89,11 +91,11 @@ class App extends React.Component {
   }
 
   notifyServer(){
-      let state = JSON.stringify(this.state);
-      console.info('notifyServer', state);
+      console.info('notifyServer:', this.state);
+
       this.wsConnection.send(JSON.stringify({
-          state: state,
-          type: 'state'
+          type: 'state',
+          state: JSON.stringify(this.state),
       }));
   }
 
@@ -107,20 +109,21 @@ class App extends React.Component {
   }
 
   handlePlayAndPause(state){
-      console.log('playing', state)
+      console.log('handlePlayPause:', state)
   }
 
   onTrackEnd(event){
-      console.log('onTrackEnd', event.target);
+      console.log('onTrackEnd:', event.target);
       window.ditHier = event.target;
       this.playNextTrack(event.target);
   }
 
   playNextTrack(target){
       let cue = this.state.queue;
-      let nextTrack = cue[0];
+      if (! cue.length)
+        return;
+      let nextTrack = cue.shift();
       target.loadVideoById(nextTrack.id.videoId);
-      cue.shift();
       this.setState({
           currentTrack: nextTrack,
           queue: cue

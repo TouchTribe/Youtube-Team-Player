@@ -34,7 +34,6 @@ class Search extends React.Component {
         fetch(searchUrl + query).then(res => res.json())
         .then((body) => {
             self.setState({search_results: body.items });
-            console.log(body);
         });
     }
 

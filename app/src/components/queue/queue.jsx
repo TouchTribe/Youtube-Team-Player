@@ -10,7 +10,14 @@ class Queue extends React.Component {
             queue: this.props.queue
         };
     }
-
+    componentWillReceiveProps(newProps)
+    {
+        this.setState({
+            queue: newProps.queue
+        });
+        if (! newProps.queue.length)
+            return;
+    }
     render() {
         let queue = this.state.queue;
         let items = queue.map((track) => {
