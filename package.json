@@ -7,7 +7,8 @@
     "express-ws": "^0.2.6",
     "lodash": "^3.10.1",
     "react": "^0.13.3",
-    "react-youtube": "^4.1.2"
+    "react-youtube": "^4.1.2",
+    "rethinkdb": "^2.1.1"
   },
   "devDependencies": {
     "babel-core": "^5.8.25",

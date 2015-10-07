@@ -1,0 +1,35 @@
+2015-10-07T11:57:05.391913000 0.012912s notice: Recursively removing directory /Users/ramon/Projects/Youtube-Team-Player/rethinkdb_data/tmp
+2015-10-07T11:57:05.393246000 0.014248s notice: Initializing directory /Users/ramon/Projects/Youtube-Team-Player/rethinkdb_data
+2015-10-07T11:57:05.393345000 0.014344s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/Users/ramon/Projects/Youtube-Team-Player/rethinkdb_data' did not already exist or is empty.)
+2015-10-07T11:57:05.393369000 0.014368s notice: Running rethinkdb 2.0.3 (CLANG 6.1.0 (clang-602.0.53))...
+2015-10-07T11:57:05.397030000 0.018030s notice: Running on Darwin 14.4.0 x86_64
+2015-10-07T11:57:05.397092000 0.018090s notice: Loading data from directory /Users/ramon/Projects/Youtube-Team-Player/rethinkdb_data
+2015-10-07T11:57:05.680235000 0.301234s info: Automatically using cache size of 1666 MB
+2015-10-07T11:57:05.681563000 0.302561s notice: Listening for intracluster connections on port 29015
+2015-10-07T11:57:05.684003000 0.305001s notice: Listening for client driver connections on port 28015
+2015-10-07T11:57:05.684081000 0.305079s notice: Listening for administrative HTTP connections on port 8000
+2015-10-07T11:57:05.684086000 0.305084s notice: Listening on addresses: 127.0.0.1, ::1
+2015-10-07T11:57:05.684088000 0.305087s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2015-10-07T11:57:05.684091000 0.305089s notice: Server ready, "Eve_local_u9p" 7ff184f1-1954-4236-b4ed-cec538411975
+2015-10-07T11:57:06.272586000 0.893534s notice: A newer version of the RethinkDB server is available: 2.1.4. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2015-10-07T11:57:34.864810000 29.484371s notice: Server got SIGINT from pid 475, uid 501; shutting down...
+2015-10-07T11:57:34.866438000 29.485999s notice: Shutting down client connections...
+2015-10-07T11:57:34.866559000 29.486120s notice: All client connections closed.
+2015-10-07T11:57:34.866570000 29.486130s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2015-10-07T11:57:34.868330000 29.487891s notice: Storage engine shut down.
+2015-10-07T11:57:38.005827000 0.351786s notice: Running rethinkdb 2.0.3 (CLANG 6.1.0 (clang-602.0.53))...
+2015-10-07T11:57:38.012234000 0.358187s notice: Running on Darwin 14.4.0 x86_64
+2015-10-07T11:57:38.012282000 0.358233s notice: Loading data from directory /Users/ramon/Projects/Youtube-Team-Player/rethinkdb_data
+2015-10-07T11:57:38.091753000 0.437704s info: Automatically using cache size of 1636 MB
+2015-10-07T11:57:38.092324000 0.438275s notice: Listening for intracluster connections on port 29015
+2015-10-07T11:57:38.093530000 0.439480s notice: Listening for client driver connections on port 28015
+2015-10-07T11:57:38.093619000 0.439569s notice: Listening for administrative HTTP connections on port 8000
+2015-10-07T11:57:38.093620000 0.439571s notice: Listening on addresses: 127.0.0.1, ::1
+2015-10-07T11:57:38.093623000 0.439573s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2015-10-07T11:57:38.093625000 0.439575s notice: Server ready, "Eve_local_u9p" 7ff184f1-1954-4236-b4ed-cec538411975
+2015-10-07T11:57:38.401812000 0.747762s notice: A newer version of the RethinkDB server is available: 2.1.4. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2015-10-07T12:00:02.479974000 144.818939s notice: Server got SIGINT from pid 475, uid 501; shutting down...
+2015-10-07T12:00:02.480083000 144.819048s notice: Shutting down client connections...
+2015-10-07T12:00:02.480265000 144.819229s notice: All client connections closed.
+2015-10-07T12:00:02.480274000 144.819239s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2015-10-07T12:00:02.483535000 144.822500s notice: Storage engine shut down.

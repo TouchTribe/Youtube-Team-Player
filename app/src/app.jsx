@@ -3,6 +3,7 @@ import Search from './components/search/search';
 import PlayerWindow from './components/player-window/player-window';
 
 window.WebSocket = window.WebSocket || window.MozWebSocket;
+const serverAdress = '127.0.0.1:3000'
 
 class App extends React.Component {
 
@@ -12,18 +13,70 @@ class App extends React.Component {
     this.state = {
         queue: [],
         currentTrack: null,
-        playing: false
+        playing: false,
+        sessionId: null
     };
     this.addToQueue = this.addToQueue.bind(this);
     this.handlePlayAndPause = this.handlePlayAndPause.bind(this);
     this.onTrackEnd = this.onTrackEnd.bind(this);
-    this.wsConnection = new WebSocket('ws://127.0.0.1:3000');
-    this.wsConnection.onmessage = this.handleIncommingMessage;
+    this.wsConnection = new WebSocket(`ws://${ serverAdress }`);
+    this.wsConnection.onmessage = this.handleIncommingMessage.bind(this);
+    this.getSessionIdOrInitState();
+  }
+
+  getSessionIdOrInitState(){
+      let hash = window.location.hash;
+      console.log('getSessionId', 'hash', hash);
+
+      if( !hash ){
+          this.createNewSession();
+      }else {
+          this.getSessionState(hash.split('#')[1]);
+      }
+  }
+
+  getSessionState(sessionId){
+      const self = this;
+      console.log('fetching state from:', `http://${ serverAdress }/state/${ sessionId }`)
+      fetch(`http://${ serverAdress }/state/${ sessionId }`)
+      .then(response => response.json())
+      .then(booty => {
+          console.log('booty ---->>>', booty);
+          self.setState(booty)
+      });
+  }
+
+  createNewSession(){
+      const self = this;
+      fetch(`http://${ serverAdress }/id`)
+      .then(response => response.json())
+      .then(booty => {
+          self.setState({
+              sessionId: booty.session_id
+          });
+      });
   }
 
   handleIncommingMessage(msg){
-      console.log('Message received:', msg );
+      let message = JSON.parse(msg.data);
+      switch (message.type) {
+          case 'state':
+              let state = JSON.parse(message.state)
+              console.log('In comming state --->>', state)
+              if(!_.isEqual(state.queue, this.state.queue)){
+                  console.log('NOT THE SAME!!', [state.queue, this.state.queue]);
+                  this.setState(state);
+              }
+              break;
+          default:
+
+      }
+      console.log('Message received:', message );
   }
+
+  evaluateMessageState(state){
+      console.log('state -->', state);
+  };
 
   addToQueue(track){
       let cue = this.state.queue;
@@ -32,6 +85,16 @@ class App extends React.Component {
           queue: cue
       });
       this.evaluateQueue();
+      this.notifyServer();
+  }
+
+  notifyServer(){
+      let state = JSON.stringify(this.state);
+      console.info('notifyServer', state);
+      this.wsConnection.send(JSON.stringify({
+          state: state,
+          type: 'state'
+      }));
   }
 
   evaluateQueue(){
@@ -62,6 +125,7 @@ class App extends React.Component {
           currentTrack: nextTrack,
           queue: cue
       });
+      this.notifyServer();
   }
 
   render() {
